@@ -62,16 +62,15 @@ STORIES = [
         "followed, leaving at least 11 dead.",
     ),
     (
-        "World court: Myanmar committed genocide",
-        "The International Court of Justice found Myanmar responsible for "
-        "genocide against the Rohingya in 2017. It is the first time the "
-        "court has held a state guilty of genocide.",
+        "BepiColombo enters Mercury orbit",
+        "After an eight-year journey, the European-Japanese probe entered "
+        "orbit around Mercury, only the second mission ever to do so.",
     ),
     (
-        "Mathematician claims AI-assisted Riemann proof",
-        "Anthropic mathematician Levent Alpoge said he used the AI Claude "
-        "to prove the Riemann hypothesis, open since 1859. Two groups have "
-        "checked the claim; wider verification will take time.",
+        "Riemann proof claim passes first checks",
+        "Independent teams verified the Lean code behind the AI-assisted "
+        "Riemann proof claim, days after it was posted. Full review will "
+        "take time.",
     ),
     (
         "UK and EU sign three post-Brexit deals",
