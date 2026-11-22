@@ -1,7 +1,10 @@
 """main.py -- entry point for the 21 November 2026 world-news poster.
 
 Running `python3 main.py` renders a deterministic 1024x1024 PNG called
-entry.png next to this file. Standard library only, no network access.
+entry.png. The image is written to the directory named by the
+MAKEFUN_OUTPUT_DIR environment variable when it is set (the grader
+points it at its output directory), and next to this file otherwise.
+Standard library only, no network access.
 
 Headlines were researched from independent day roundups of Saturday
 21 November 2026 (One Turn, Horizon, Weekend Buzz, and the daily video
@@ -9,6 +12,12 @@ roundup) and cross-checked across them before being written here.
 """
 
 import os
+import sys
+
+# The grader starts this program as `python3 -P -s /bot/main.py`: the -P
+# (safe path) flag keeps this file's own directory off sys.path, so the
+# sibling module below would not be importable without this line.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from draw import Canvas, save_png, text_width, wrap_text
 
@@ -146,7 +155,13 @@ def render():
 
 def main():
     here = os.path.dirname(os.path.abspath(__file__))
-    output = os.path.join(here, "entry.png")
+    # The grader reads the image from its output directory (MAKEFUN_OUTPUT_DIR,
+    # /output there); its repository mount is read-only, so writing next to
+    # this file would fail there. Locally the variable is unset and the image
+    # lands beside this file, as before.
+    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or here
+    os.makedirs(out_dir, exist_ok=True)
+    output = os.path.join(out_dir, "entry.png")
     save_png(render(), output)
     print("wrote %s (%dx%d)" % (output, WIDTH, HEIGHT))
 
